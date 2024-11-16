@@ -11,7 +11,7 @@ const Connects = () => {
         <h5 className="text-custom-grey font-semibold">For buyers</h5>
       </article>
 
-      <div className="steps flex flex-col gap-[20px] md:justify-between md:flex-row px-[100px]">
+      <div className="steps flex flex-col gap-[20px] md:justify-between md:flex-row md:px-[100px]">
         <div className="step flex flex-col gap-[20px] justify-center mx-auto items-start pb-[20px] border-b md:border-none border-gray-300">
           <img src={buy} alt="Sign up" className="mx-auto w-[250px] md:w-[200px]" />
           <div className="text-content flex gap-[15px] md:gap-[10px] items-center">

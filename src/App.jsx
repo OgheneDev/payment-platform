@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import MainLayout from './layouts/MainLayout';
 import SendPage from './pages/SendPage';
 import WalletPage from './pages/WalletPage';
+import ActivityPage from './pages/ActivityPage';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/wallet',
         element: <WalletPage />
+      },
+      {
+        path: '/activity',
+        element: <ActivityPage />
       }
     ],
   },

@@ -9,7 +9,8 @@ export default {
       colors: {
         'custom-blue': '#0070ba',
         'custom-grey': '#666',
-        'custom-light-blue': '#d1f1ff'
+        'custom-light-blue': '#d1f1ff',
+        'custom-ash': 'rgb(250, 248, 245)'
       }
     },
   },

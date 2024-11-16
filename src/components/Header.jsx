@@ -86,18 +86,6 @@ const Header = () => {
                 Activity
               </Link>
             </li>
-            <li>
-              <Link
-                to="/help"
-                className={`block px-3 py-2 rounded-md ${
-                  location.pathname === '/help'
-                    ? 'bg-[#0046aa] text-white'
-                    : 'text-custom-light-blue hover:bg-[#0046aa] hover:text-white'
-                }`}
-              >
-                Help
-              </Link>
-            </li>
           </ul>
         </nav>
       </div>
