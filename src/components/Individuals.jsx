@@ -1,5 +1,5 @@
 import React from 'react'
-import individual from '../assets/images/Individuals.jpg'
+import individual from '../assets/images/individuals.jpg'
 
 const Individuals = () => {
   return (
