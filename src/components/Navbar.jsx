@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/images/pp_h_rgb_logo_tn-removebg-preview.png'
 import { Link } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 
@@ -11,7 +11,7 @@ const Navbar = () => {
         Menu
       </button>
 
-      <img src={logo} alt="" className='w-[100px] md:w-[150px]' />
+      <img src={logo} alt="" className='w-[100px] md:w-[25px]' />
 
       <Link to='/login'>
       <button className='bg-white border hover:bg-custom-blue border-custom-blue hover:border-none text-custom-blue hover:text-white transition-colors duration-300 ease-in-out text-[13px] font-semibold md:py-[8px] md:px-[25px] py-[5px] px-[20px] rounded-full'>Log In</button>

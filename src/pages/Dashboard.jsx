@@ -6,11 +6,15 @@ import Cards from '../components/Cards'
 
 const Dashboard = () => {
   return (
-    <div className='bg-[#eff2f5]'>
+    <div className='bg-[#eff2f5] flex flex-col md:flex-row md:pl-[100px]'>
+      <div>
       <LinkCard />
       <Balance />
       <Recent />
+      </div>
+      <div className="w-ful md:bg-white">
       <Cards />
+      </div>
     </div>
   )
 }

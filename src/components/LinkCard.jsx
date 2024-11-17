@@ -32,15 +32,31 @@ const LinkCard = () => {
     },
   ];
 
+  const handleNavigate = (direction) => {
+    const container = cardContainerRef.current;
+    const cardWidth = container.offsetWidth;
+    let nextIndex;
+
+    if (direction === 'next') {
+      nextIndex = (activeIndex + 1) % totalCards;
+    } else {
+      nextIndex = activeIndex === 0 ? totalCards - 1 : activeIndex - 1;
+    }
+
+    container.scrollTo({
+      left: cardWidth * nextIndex,
+      behavior: 'smooth',
+    });
+    setActiveIndex(nextIndex);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth < 768) {
-        const container = cardContainerRef.current;
-        const scrollPosition = container.scrollLeft;
-        const cardWidth = container.offsetWidth;
-        const currentIndex = Math.round(scrollPosition / cardWidth);
-        setActiveIndex(currentIndex);
-      }
+      const container = cardContainerRef.current;
+      const scrollPosition = container.scrollLeft;
+      const cardWidth = container.offsetWidth;
+      const currentIndex = Math.round(scrollPosition / cardWidth);
+      setActiveIndex(currentIndex);
     };
 
     const container = cardContainerRef.current;
@@ -95,29 +111,54 @@ const LinkCard = () => {
         </article>
       </div>
 
-      {/* Card Slider */}
-      <div
-        className="card-slider flex overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none space-x-[30px] px-4 md:justify-between"
-        ref={cardContainerRef}
-      >
-        {cardData.map((card, index) => (
-          <div
-            key={index}
-            className="snap-center shrink-0 w-[90vw] md:w-[30%] p-4 rounded-md flex flex-col items-center text-white"
-            style={{ backgroundColor: card.backgroundColor }}
-          >
-            <img src={card.image} alt={card.name} className="w-[50%] h-auto mb-4" />
-            <h1 className="text-3xl mb-[20px]">{card.name}</h1>
-            <p className="mb-[50px] text-[20px] text-center">{card.description}</p>
-            <button className="bg-white border border-[#121661] text-[#121661] w-full py-[10px] rounded-full font-bold text-xl">
-              {card.proceed}
-            </button>
-          </div>
-        ))}
+      {/* Slider Container with Navigation */}
+      <div className="relative w-[90%] mx-auto">
+        {/* Previous Button */}
+        <button 
+          onClick={() => handleNavigate('prev')}
+          className="absolute left-10 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center"
+          aria-label="Previous slide"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="#121661" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        {/* Card Slider */}
+        <div
+          className="card-slider flex overflow-x-auto snap-x snap-mandatory space-x-[20px] px-4"
+          ref={cardContainerRef}
+        >
+          {cardData.map((card, index) => (
+            <div
+              key={index}
+              className="snap-center shrink-0 w-[90vw] md:w-[49%] p-[20px] rounded-lg flex flex-col items-start text-white"
+              style={{ backgroundColor: card.backgroundColor }}
+            >
+              <img src={card.image} alt={card.name} className=" h-auto mb-4 mx-auto" />
+              <h1 className="text-3xl mb-[20px] md:mb-[10px]">{card.name}</h1>
+              <p className="mb-[50px] md:mb-[30px] text-[20px] text-start">{card.description}</p>
+              <button className="bg-white border border-[#121661] text-[#121661] w-full py-[10px] rounded-full font-bold text-xl">
+                {card.proceed}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Next Button */}
+        <button 
+          onClick={() => handleNavigate('next')}
+          className="absolute right-10 top-1/2 -translate-y-1/2 translate-x-12 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center"
+          aria-label="Next slide"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6L15 12L9 18" stroke="#121661" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
       </div>
 
-      {/* Indicator Dots */}
-      <div className="indicator-dots flex justify-center mt-4 md:hidden">
+      {/* Indicator Dots - Now visible on all screen sizes */}
+      <div className="indicator-dots flex justify-center mt-8">
         {cardData.map((_, index) => (
           <span
             key={index}

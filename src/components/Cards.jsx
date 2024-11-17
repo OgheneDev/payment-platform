@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Cards = () => {
   return (
-    <div className="py-[30px]">
+    <div className="py-[30px] md:w-[500px] md:h-[100vh]">
       <div className='p-[20px] rounded-[15px] bg-white w-[90%] mx-auto'>
       <div className="header flex justify-between mb-[20PX]">
         <h3 className='text-xl font-bold'>Cards</h3>
@@ -35,9 +35,11 @@ const Cards = () => {
         <article className="flex flex-col gap-[5px] font-semibold">
           <p className="">Shop and send payments more securely.</p>
           <p className="mb-[20px]">Link your credit card now.</p>
-          <Link className='text-blue-500 font-bold text-[18px]'>Link Card</Link>
+          
         </article>
       </div>
+      <Link className='text-blue-500 font-bold text-[18px]'>Link Card</Link>
+
     </div>
     </div>
   )
