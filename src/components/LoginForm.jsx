@@ -37,7 +37,7 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         style={{ borderColor: error ? 'red' : '' }}
         />
-      <Link className='text-custom-blue font-semibold mb-[10px]'>Forgot email?</Link>
+      <Link to='/password-reset' className='text-custom-blue font-semibold mb-[10px]'>Forgot password?</Link>
       <button type='submit' className='mx-auto bg-[#003087] text-white py-[10px] rounded-full w-full font-semibold'>
         {isLoading ? 'Processing...' : 'Next'}
       </button>

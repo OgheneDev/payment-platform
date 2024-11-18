@@ -8,6 +8,7 @@ import MainLayout from './layouts/MainLayout';
 import SendPage from './pages/SendPage';
 import WalletPage from './pages/WalletPage';
 import ActivityPage from './pages/ActivityPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/password-reset',
+    element: <ForgotPasswordPage />
   },
   {
     path: '/',
