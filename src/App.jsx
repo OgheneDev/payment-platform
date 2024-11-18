@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { FinancialContextProvider } from './context/FinancialContext';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
@@ -46,9 +47,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+
 const App = () => {
-  return <RouterProvider router={router} />;
-};
+  return (
+    <FinancialContextProvider>
+      <RouterProvider router={router} />
+    </FinancialContextProvider>
+  );
+}
 
 export default App;
 
