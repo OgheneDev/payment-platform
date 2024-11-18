@@ -8,18 +8,41 @@ const ActivityPage = () => {
   const [allTransactions, setAllTransactions] = useState([]);
 
   useEffect(() => {
-    // Create a balance "transaction" object
-    const balanceTransaction = {
-      id: 'balance',
-      timestamp: new Date().toLocaleDateString(),
-      description: 'Deposit',
-      amount: balance,
-      type: 'balance',
-      status: 'completed'
+    // Helper function to generate four random numbers that sum to the total balance
+    const generateRandomSplit = (total, parts) => {
+      if (total <= 0) return Array(parts).fill(0); // Handle cases where balance is 0 or negative
+
+      let values = [];
+      let sum = 0;
+
+      for (let i = 0; i < parts - 1; i++) {
+        // Generate a random value between 0 and the remaining balance
+        const value = parseFloat((Math.random() * (total - sum) / (parts - i)).toFixed(2));
+        values.push(value);
+        sum += value;
+      }
+
+      // Add the remaining balance to the last part
+      values.push(parseFloat((total - sum).toFixed(2)));
+
+      return values;
     };
 
-    // Combine balance with other transactions
-    setAllTransactions([balanceTransaction, ...transactions]);
+    // Generate the random splits for the balance
+    const splitBalances = generateRandomSplit(balance, 4);
+
+    // Create transaction objects for each split balance
+    const balanceTransactions = splitBalances.map((amount, index) => ({
+      id: `balance-${index + 1}`,
+      timestamp: new Date().toLocaleDateString(),
+      description: `Deposit`,
+      amount: amount,
+      type: 'balance',
+      status: 'completed',
+    }));
+
+    // Combine split balance transactions with other transactions
+    setAllTransactions([...balanceTransactions, ...transactions]);
   }, [transactions, balance]);
 
   const filteredTransactions = allTransactions.filter(transaction =>
