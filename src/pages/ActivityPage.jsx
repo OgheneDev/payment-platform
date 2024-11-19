@@ -107,11 +107,18 @@ const ActivityPage = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         {transaction.type === 'balance' ? (
                           <span className="text-blue-600">
-                            ${transaction.amount.toFixed(2)}
+                            ${transaction.amount.toLocaleString('en-US', { 
+                              minimumFractionDigits: 2, 
+                              maximumFractionDigits: 2 
+                            })}
                           </span>
                         ) : (
                           <span className={transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}>
-                            {transaction.type === 'credit' ? '+' : '-'}${Math.abs(transaction.amount).toFixed(2)}
+                            {transaction.type === 'credit' ? '+' : '-'}$
+                            {Math.abs(transaction.amount).toLocaleString('en-US', { 
+                              minimumFractionDigits: 2, 
+                              maximumFractionDigits: 2 
+                            })}
                           </span>
                         )}
                       </td>

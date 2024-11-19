@@ -5,6 +5,12 @@ import { useFinancial } from '../context/FinancialContext';
 const Balance = () => {
   const { balance, loading } = useFinancial();
 
+  // Format balance with commas and two decimal places
+  const formattedBalance = balance.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
   return (
     <div className="pb-[30px]">
       <div className='bg-white w-[90%] mx-auto p-[20px] rounded-[15px]'>
@@ -20,7 +26,7 @@ const Balance = () => {
             </div>
           ) : (
             <>
-              <h1 className='text-3xl'>${balance.toFixed(2)}</h1>
+              <h1 className='text-3xl'>${formattedBalance}</h1>
               <span>Available</span>
             </>
           )}
